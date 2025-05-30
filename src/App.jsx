@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import DefaultLayout from "./layouts/DefaultLayout"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {
   return (
-    <>
-      <h1>App</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DefaultLayout />}>
+          <Route index element={<h1>Home</h1>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
