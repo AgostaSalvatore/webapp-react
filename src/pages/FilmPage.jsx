@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ReviewCard from '../components/ReviewCard'
 
 const initialMovies = [
     {
@@ -8,72 +9,170 @@ const initialMovies = [
         title: "Film 1",
         author: "Autore 1",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     },
     {
         id: 2,
         title: "Film 2",
         author: "Autore 2",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     },
     {
         id: 3,
         title: "Film 3",
         author: "Autore 3",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     },
     {
         id: 4,
         title: "Film 4",
         author: "Autore 4",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     },
     {
         id: 5,
         title: "Film 5",
         author: "Autore 5",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     },
     {
         id: 6,
         title: "Film 6",
         author: "Autore 6",
         excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
+        image: "https://picsum.photos/500/300",
+        reviews: [
+            {
+                id: 1,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 2,
+                author: "Autore 1"
+            },
+            {
+                id: 2,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 4,
+                author: "Autore 2"
+            },
+            {
+                id: 3,
+                text: "Lorem ipsum dolor sit amet",
+                vote: 3,
+                author: "Autore 3"
+            }
+        ]
     }
 ];
 
-const initialReviews = [
-    {
-        id: 1,
-        text: "Lorem ipsum dolor sit amet",
-        vote: 2,
-        author: "Autore 1"
-    },
-    {
-        id: 2,
-        text: "Lorem ipsum dolor sit amet",
-        vote: 4,
-        author: "Autore 2"
-    },
-    {
-        id: 3,
-        text: "Lorem ipsum dolor sit amet",
-        vote: 3,
-        author: "Autore 3"
-    }
-];
 
 const FilmPage = () => {
     const { id } = useParams()
     const [films, setFilms] = useState(initialMovies);
     const [film, setFilm] = useState(null)
-    const [reviews, setReviews] = useState(initialReviews)
-
     //function
     const fetchFilm = () => {
         films.forEach((actualFilm) => {
@@ -102,27 +201,22 @@ const FilmPage = () => {
                             <h3>{film.author}</h3>
                             <p>{film.excerpt}</p>
                         </div>
+
+                        <div className="row gy-4">
+                            <div className="col-12">
+                                <div className="d-flex justify-content-between">
+                                    <h3>Our Community Reviews</h3>
+                                </div>
+                            </div>
+                            {film.reviews.map((review) => {
+                                return (
+                                    <ReviewCard key={`review-${review.id}`} review={review} />
+                                )
+                            })}
+
+                        </div>
                     </>
                 )}
-            </div>
-            <div className="row gy-4">
-                <div className="col-12">
-                    <div className="d-flex justify-content-between">
-                        <h3>Our Community Reviews</h3>
-                    </div>
-                </div>
-                {reviews.map((review) => {
-                    return (
-                        <div className="col-12" key={`review-${review.id}`}>
-                            <div className="card p-3">
-                                <p>{review.text}</p>
-                                <p>{review.vote}</p>
-                                <p>{review.author}</p>
-                            </div>
-                        </div>
-                    )
-                })}
-
             </div>
         </>
     )
