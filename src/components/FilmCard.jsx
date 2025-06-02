@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const FilmCard = ({ movie }) => {
     const { id, title, author, excerpt, image } = movie
     return (
-        <div className="col-12 col-md-6 col-lg-4 mb-4" key={`film-${id}`}>
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
             <div className="card">
                 <div className="card-image-top">
                     <img
@@ -23,7 +23,7 @@ const FilmCard = ({ movie }) => {
                     <Link to={`/movie/${id}`} className="btn btn-primary">More Info</Link>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
