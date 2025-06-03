@@ -1,57 +1,26 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FilmCard from '../components/FilmCard'
-
-//array film
-const initialMovies = [
-    {
-        id: 1,
-        title: "Film 1",
-        author: "Autore 1",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    },
-    {
-        id: 2,
-        title: "Film 2",
-        author: "Autore 2",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    },
-    {
-        id: 3,
-        title: "Film 3",
-        author: "Autore 3",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    },
-    {
-        id: 4,
-        title: "Film 4",
-        author: "Autore 4",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    },
-    {
-        id: 5,
-        title: "Film 5",
-        author: "Autore 5",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    },
-    {
-        id: 6,
-        title: "Film 6",
-        author: "Autore 6",
-        excerpt: "Lorem Ipsum dolor sit amet",
-        image: "https://picsum.photos/500/300"
-    }
-]
+import axios from 'axios'
 
 const Homepage = () => {
 
-    const [movies, setMovies] = useState(initialMovies)
+    const [movies, setMovies] = useState([])
 
+    const fetchMovies = () => {
+        axios.get('http://localhost:3000/api/movies')
+            .then((response) => {
+                console.log(response.data)
+                setMovies(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        fetchMovies()
+    }, [])
 
     return (
         <>
