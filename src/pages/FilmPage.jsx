@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ReviewCard from '../components/ReviewCard'
-import RenderStars from '../components/RenderStars'
+import StarsVote from '../components/StarsVote'
 
 const FilmPage = () => {
     const { id } = useParams()
@@ -57,7 +57,7 @@ const FilmPage = () => {
                                 <div className="d-flex justify-content-between">
                                     <h3>Our Community Reviews</h3>
                                     <p>
-                                        <RenderStars vote={film.average_vote} />
+                                        <StarsVote vote={film.average_vote} />
                                     </p>
                                 </div>
                             </div>

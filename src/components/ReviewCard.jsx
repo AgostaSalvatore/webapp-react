@@ -1,5 +1,5 @@
 import React from 'react'
-import RenderStars from './RenderStars'
+import StarsVote from './StarsVote'
 
 const ReviewCard = ({ review }) => {
     const { text, vote, name } = review
@@ -7,7 +7,7 @@ const ReviewCard = ({ review }) => {
         <div className="col-12">
             <div className="card p-3">
                 <p>{text}</p>
-                <RenderStars vote={vote} />
+                <StarsVote vote={vote} />
                 <p className='mt-3'>{name}</p>
             </div>
         </div>
