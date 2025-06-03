@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
 const FilmCard = ({ movie }) => {
     const { id, title, author, excerpt, image } = movie
     return (
@@ -13,14 +14,16 @@ const FilmCard = ({ movie }) => {
                         alt="" />
                 </div>
                 <div className="card-body">
-                    <h3 className="text-primary">{title}</h3>
+                    <h3 className="text-danger">{title}</h3>
                     <h4>
                         <em>{author}</em>
                     </h4>
                     <p>
                         {excerpt}
                     </p>
-                    <Link to={`/movie/${id}`} className="btn btn-primary">More Info</Link>
+                    <Link to={`/movie/${id}`} className="btn btn-danger">
+                        <FontAwesomeIcon icon={faFilm} /> More Info
+                    </Link>
                 </div>
             </div>
         </div >

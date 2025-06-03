@@ -44,11 +44,14 @@ const FilmPage = () => {
                             <div className="col-12">
                                 <div className="d-flex justify-content-between">
                                     <h3>Our Community Reviews</h3>
+                                    <p>{film.average_vote}</p>
                                 </div>
                             </div>
                             {film.reviews.map((review) => {
                                 return (
-                                    <ReviewCard key={`review-${review.id}`} review={review} />
+                                    <div className="col-12" key={`review-${review.id}`}>
+                                        <ReviewCard review={review} />
+                                    </div>
                                 )
                             })}
 
