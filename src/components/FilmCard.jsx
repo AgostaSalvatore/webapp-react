@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm } from '@fortawesome/free-solid-svg-icons'
+
 const FilmCard = ({ movie }) => {
     const { id, title, author, excerpt, image } = movie
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-4">
-            <div className="card">
+            <div className="card h-100 d-flex flex-column">
                 <div className="card-image-top">
                     <img
                         className='img-fluid'

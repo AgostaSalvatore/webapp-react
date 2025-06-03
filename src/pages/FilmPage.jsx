@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ReviewCard from '../components/ReviewCard'
+import RenderStars from '../components/RenderStars'
 
 const FilmPage = () => {
     const { id } = useParams()
@@ -19,6 +20,17 @@ const FilmPage = () => {
                 console.log(error)
             })
     };
+
+    //stars
+    const renderStars = (vote) => {
+        return [1, 2, 3, 4, 5].map((elem, i) => {
+            return (<i
+                key={`star-average-${i}`}
+                className={`fa-star ${i < vote ? 'fa-solid' : 'fa-regular'} text-warning`}>
+            </i>
+            );
+        })
+    }
 
     useEffect(() => {
         fetchFilm()
@@ -44,7 +56,9 @@ const FilmPage = () => {
                             <div className="col-12">
                                 <div className="d-flex justify-content-between">
                                     <h3>Our Community Reviews</h3>
-                                    <p>{film.average_vote}</p>
+                                    <p>
+                                        <RenderStars vote={film.average_vote} />
+                                    </p>
                                 </div>
                             </div>
                             {film.reviews.map((review) => {
