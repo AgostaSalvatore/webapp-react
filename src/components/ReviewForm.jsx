@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 
-const ReviewForm = ({ film_id, reloadReviews }) => {
+const ReviewForm = ({ movie_id, reloadReviews }) => {
 
     const initialData = {
         name: '',
@@ -23,7 +23,7 @@ const ReviewForm = ({ film_id, reloadReviews }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post(`http://localhost:3000/api/movies/${film_id}/review`, formData,
+        axios.post(`http://localhost:3000/api/movies/${movie_id}/review`, formData,
             {
                 headers:
                     { 'Content-Type': 'application/json' }

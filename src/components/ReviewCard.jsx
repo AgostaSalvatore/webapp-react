@@ -6,9 +6,9 @@ const ReviewCard = ({ review }) => {
     return (
         <div className="col-12">
             <div className="card p-3">
-                <p>{text}</p>
+                <p><b>Recensione: </b>{text}</p>
                 <StarsVote vote={vote} />
-                <p className='mt-3'>{name}</p>
+                <p className='mt-3'><b>Autore: </b>{name}</p>
             </div>
         </div>
     )
