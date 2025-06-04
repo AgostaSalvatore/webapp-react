@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ReviewCard from '../components/ReviewCard'
 import StarsVote from '../components/StarsVote'
+import ReviewForm from '../components/ReviewForm'
 
 const FilmPage = () => {
     const { id } = useParams()
@@ -68,7 +69,7 @@ const FilmPage = () => {
                                     </div>
                                 )
                             })}
-
+                            <ReviewForm film_id={film.id} reloadReviews={fetchFilm} />
                         </div>
                     </>
                 )}

@@ -9,6 +9,11 @@ body {
     height: 100%;
 }
 
+.card-review {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 .card-image-top {
     height: 80%;
     overflow: hidden;
