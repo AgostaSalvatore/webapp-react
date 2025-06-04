@@ -23,13 +23,17 @@ const ReviewForm = ({ film_id, reloadReviews }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post(`http://localhost:3000/api/movies/${film_id}/reviews`, formData,
+        axios.post(`http://localhost:3000/api/movies/${film_id}/review`, formData,
             {
                 headers:
                     { 'Content-Type': 'application/json' }
             }).then((response) => {
+                console.log('Risposta dal server:', response.data)
                 setFormData(initialData)
                 reloadReviews()
+            }).catch(error => {
+                console.error('Errore durante l\'invio della recensione:', error.response ? error.response.data : error.message)
+                alert('Errore durante l\'invio della recensione. Controlla la console per dettagli.')
             })
     }
 
