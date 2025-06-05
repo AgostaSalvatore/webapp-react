@@ -12,6 +12,43 @@ const ReviewForm = ({ movie_id, reloadReviews }) => {
 
     const [formData, setFormData] = useState(initialData)
 
+    const [isFormValid, setIsFormValid] = useState(true)
+    const [errorMessage, setErrorMessage] = useState([])
+
+    const validateForm = () => {
+
+        const errors = []
+
+        if (formData.name === '') {
+            errors.push({
+                field: 'name',
+                message: 'Name is required'
+            })
+        }
+
+        if (formData.vote === '') {
+            errors.push({
+                field: 'vote',
+                message: 'Vote is required'
+            })
+        }
+
+        if (isNaN(formData.vote) || formData.vote < 0 || formData.vote > 5) {
+            errors.push({
+                field: 'vote',
+                message: 'Vote must be between 0 and 5'
+            })
+        }
+
+        if (errors.length > 0) {
+            setIsFormValid(false)
+            setErrorMessage(errors)
+            return errors;
+        }
+
+        return errors;
+    }
+
     const setFieldValue = (e) => {
         const { name, value } = e.target
         setFormData({
@@ -23,12 +60,18 @@ const ReviewForm = ({ movie_id, reloadReviews }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        if (typeof validateForm() === 'object') {
+            setIsFormValid(false)
+            return;
+        }
+
         axios.post(`http://localhost:3000/api/movies/${movie_id}/review`, formData,
             {
                 headers:
                     { 'Content-Type': 'application/json' }
             }).then((response) => {
                 console.log('Risposta dal server:', response.data)
+                setIsFormValid(true)
                 setFormData(initialData)
                 reloadReviews()
             }).catch(error => {
@@ -46,11 +89,29 @@ const ReviewForm = ({ movie_id, reloadReviews }) => {
                 <div className="card-body">
                     <div className="form-group">
                         <label htmlFor="" className="control-label">Name</label>
-                        <input type="text" className="form-control" placeholder="Name" name='name' value={formData.name} required onChange={setFieldValue} />
+                        <input type="text" className="form-control" placeholder="Name" name='name' value={formData.name} onChange={setFieldValue} />
+                        {errorMessage.map((error) => {
+                            if (error.field === 'name') {
+                                return (
+                                    <div className="text-danger">
+                                        <p>{error.message}</p>
+                                    </div>
+                                )
+                            }
+                        })}
                     </div>
                     <div className="form-group">
                         <label htmlFor="" className="control-label">Vote</label>
-                        <input type="number" min={0} max={5} className="form-control" placeholder="Vote" name='vote' value={formData.vote} required onChange={setFieldValue} />
+                        <input type="number" min={0} max={5} className="form-control" placeholder="Vote" name='vote' value={formData.vote} onChange={setFieldValue} />
+                        {errorMessage.map((error) => {
+                            if (error.field === 'vote') {
+                                return (
+                                    <div className="text-danger">
+                                        <p>{error.message}</p>
+                                    </div>
+                                )
+                            }
+                        })}
                     </div>
                     <div className="form-group">
                         <label htmlFor="" className="control-label">Review</label>
