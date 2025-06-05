@@ -5,20 +5,29 @@ import { useParams } from 'react-router-dom'
 import ReviewCard from '../components/ReviewCard'
 import StarsVote from '../components/StarsVote'
 import ReviewForm from '../components/ReviewForm'
+import { useContext } from 'react'
+import GlobalContext from '../context/globalContext'
 
 const FilmPage = () => {
     const { id } = useParams()
 
     const [film, setFilm] = useState(null)
+
+    const { setIsLoading } = useContext(GlobalContext)
     //function
     const fetchFilm = () => {
+        setIsLoading(true);
         axios.get(`http://localhost:3000/api/movies/${id}`)
             .then((response) => {
                 console.log(response.data)
-                setFilm(response.data)
+                setTimeout(() => {
+                    setFilm(response.data)
+                    setIsLoading(false);
+                }, 1000);
             })
             .catch((error) => {
                 console.log(error)
+                setIsLoading(false);
             })
     };
 

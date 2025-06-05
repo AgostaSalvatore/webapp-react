@@ -19,8 +19,10 @@ const Homepage = () => {
 
             .then((response) => {
                 console.log(response.data)
-                setMovies(response.data)
-                setIsLoading(false);
+                setTimeout(() => {
+                    setMovies(response.data)
+                    setIsLoading(false);
+                }, 1000);
             })
             .catch((error) => {
                 console.log(error)
