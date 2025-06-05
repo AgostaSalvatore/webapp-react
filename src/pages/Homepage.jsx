@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import FilmCard from '../components/FilmCard'
 import axios from 'axios'
+import Loader from '../components/Loader'
 
 const Homepage = () => {
 
@@ -24,6 +25,7 @@ const Homepage = () => {
 
     return (
         <>
+            <Loader />
             <h1 className='text-danger'>Boolflix</h1>
             <h2>
                 <i>Il tuo sito di streaming</i>
